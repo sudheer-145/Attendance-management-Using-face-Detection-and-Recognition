@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Author Details</title>
+    <style>
+        body{
+            margin:0;
+            font-family:Arial, sans-serif;
+            background:#f4f6f9;
+        }
+
+        .header{
+            background:linear-gradient(135deg, #5f2c82, #49a09d);
+            color:white;
+            text-align:center;
+            padding:25px;
+        }
+
+        .container{
+            max-width:850px;
+            margin:35px auto;
+            background:white;
+            padding:30px;
+            border-radius:15px;
+            box-shadow:0 6px 15px rgba(0,0,0,0.12);
+        }
+
+        .container h2{
+            color:#5f2c82;
+            margin-bottom:20px;
+            text-align:center;
+        }
+
+        .grid{
+            display:grid;
+            grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));
+            gap:16px;
+        }
+
+        .item{
+            background:#f8f9fb;
+            padding:15px;
+            border-radius:10px;
+        }
+
+        .item strong{
+            display:block;
+            margin-bottom:8px;
+            color:#333;
+        }
+
+        .item span{
+            color:#666;
+        }
+
+        .center{
+            text-align:center;
+            margin-top:30px;
+        }
+
+        .back-btn{
+            padding:10px 20px;
+            border:none;
+            border-radius:8px;
+            background:#5f2c82;
+            color:white;
+            cursor:pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h2>Author Details</h2>
+    </div>
+
+    <div class="container">
+        {% if author %}
+        <h2>Project Author / Admin Information</h2>
+        <div class="grid">
+            <div class="item">
+                <strong>Full Name</strong>
+                <span>{{ author["full_name"] }}</span>
+            </div>
+            <div class="item">
+                <strong>Role</strong>
+                <span>{{ author["role"] }}</span>
+            </div>
+            <div class="item">
+                <strong>College Name</strong>
+                <span>{{ author["college_name"] }}</span>
+            </div>
+            <div class="item">
+                <strong>Department</strong>
+                <span>{{ author["department"] }}</span>
+            </div>
+            <div class="item">
+                <strong>Email</strong>
+                <span>{{ author["email"] }}</span>
+            </div>
+            <div class="item">
+                <strong>Phone</strong>
+                <span>{{ author["phone"] }}</span>
+            </div>
+            <div class="item">
+                <strong>Project Title</strong>
+                <span>{{ author["project_title"] }}</span>
+            </div>
+            <div class="item">
+                <strong>Guide Name</strong>
+                <span>{{ author["guide_name"] }}</span>
+            </div>
+        </div>
+        {% else %}
+            <p>No author details found.</p>
+        {% endif %}
+
+        <div class="center">
+            <a href="/dashboard">
+                <button class="back-btn">Back to Dashboard</button>
+            </a>
+        </div>
+    </div>
+
+</body>
+</html>

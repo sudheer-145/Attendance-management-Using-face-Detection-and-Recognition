@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Student</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial, sans-serif;
+        }
+
+        body{
+            background:linear-gradient(135deg, #eef2f3, #dfe9f3);
+            min-height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+        }
+
+        .box{
+            width:420px;
+            background:white;
+            padding:35px 30px;
+            border-radius:18px;
+            box-shadow:0 10px 30px rgba(0,0,0,0.15);
+            text-align:center;
+        }
+
+        .box h2{
+            margin-bottom:25px;
+            color:#5f2c82;
+        }
+
+        .box input{
+            width:100%;
+            padding:12px;
+            margin:10px 0;
+            border:1px solid #ccc;
+            border-radius:10px;
+            outline:none;
+            font-size:15px;
+        }
+
+        .box input:focus{
+            border-color:#5f2c82;
+        }
+
+        .btn{
+            width:100%;
+            padding:12px;
+            margin-top:12px;
+            border:none;
+            border-radius:10px;
+            background:#5f2c82;
+            color:white;
+            font-size:15px;
+            font-weight:bold;
+            cursor:pointer;
+            transition:0.3s;
+        }
+
+        .btn:hover{
+            background:#4b1f6b;
+        }
+
+        .back-link{
+            display:block;
+            margin-top:15px;
+            text-decoration:none;
+        }
+
+        .back-btn{
+            width:100%;
+            padding:12px;
+            border:none;
+            border-radius:10px;
+            background:#888;
+            color:white;
+            font-size:15px;
+            font-weight:bold;
+            cursor:pointer;
+            transition:0.3s;
+        }
+
+        .back-btn:hover{
+            background:#666;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="box">
+        <h2>Register Student</h2>
+
+        <form action="/register" method="POST">
+            <input type="text" name="name" placeholder="Student Name" required>
+            <input type="text" name="student_id" placeholder="Student ID" required>
+            <input type="text" name="department" placeholder="Department" required>
+            <input type="password" name="password" placeholder="Create Password" required>
+            <input type="text" name="parent_name" placeholder="Parent Name" required>
+            <input type="text" name="parent_phone" placeholder="Parent Phone" required>
+            <input type="email" name="parent_email" placeholder="Parent Email" required>
+
+            <button type="submit" class="btn">Register Face</button>
+        </form>
+
+        <a href="/dashboard" class="back-link">
+            <button type="button" class="back-btn">Back to Dashboard</button>
+        </a>
+    </div>
+
+</body>
+</html>

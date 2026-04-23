@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial, sans-serif;
+        }
+
+        body{
+            background:#f4f6f9;
+            padding:30px 15px;
+        }
+
+        .box{
+            max-width:950px;
+            margin:auto;
+            background:white;
+            padding:35px 30px;
+            border-radius:18px;
+            box-shadow:0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .box h2{
+            color:#5f2c82;
+            margin-bottom:25px;
+            text-align:center;
+        }
+
+        .info{
+            margin-bottom:30px;
+            line-height:2;
+            font-size:17px;
+            color:#333;
+            text-align:left;
+        }
+
+        .info b{
+            color:#5f2c82;
+        }
+
+        .summary-grid{
+            display:flex;
+            flex-wrap:wrap;
+            justify-content:center;
+            gap:20px;
+            margin-bottom:30px;
+        }
+
+        .summary-card{
+            background:#f9f9f9;
+            border-radius:12px;
+            padding:18px;
+            width:180px;
+            text-align:center;
+            box-shadow:0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .summary-card h4{
+            color:#666;
+            margin-bottom:10px;
+            font-size:16px;
+        }
+
+        .summary-card p{
+            color:#5f2c82;
+            font-size:24px;
+            font-weight:bold;
+        }
+
+        .date-section{
+            margin-top:20px;
+        }
+
+        .date-section h3{
+            color:#333;
+            margin-bottom:12px;
+        }
+
+        .date-list{
+            background:#f8f8f8;
+            padding:14px;
+            border-radius:10px;
+            min-height:50px;
+            line-height:1.8;
+            color:#444;
+            margin-bottom:20px;
+        }
+
+        .buttons{
+            margin-top:25px;
+            text-align:center;
+        }
+
+        .btn{
+            padding:12px 22px;
+            background:#5f2c82;
+            color:white;
+            border:none;
+            border-radius:10px;
+            cursor:pointer;
+            margin:8px 6px;
+            font-size:15px;
+            font-weight:bold;
+            transition:0.3s;
+        }
+
+        .btn:hover{
+            background:#47206a;
+        }
+
+        .btn-secondary{
+            background:#888;
+        }
+
+        .btn-secondary:hover{
+            background:#666;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="box">
+        <h2>Student Dashboard</h2>
+
+        <div class="info">
+            <p><b>Name:</b> {{ name }}</p>
+            <p><b>Student ID:</b> {{ student_id }}</p>
+            <p><b>Department:</b> {{ department }}</p>
+        </div>
+
+        <div class="summary-grid">
+            <div class="summary-card">
+                <h4>Total Days</h4>
+                <p>{{ summary.total_days }}</p>
+            </div>
+
+            <div class="summary-card">
+                <h4>Present Days</h4>
+                <p>{{ summary.present_days }}</p>
+            </div>
+
+            <div class="summary-card">
+                <h4>Absent Days</h4>
+                <p>{{ summary.absent_days }}</p>
+            </div>
+
+            <div class="summary-card">
+                <h4>Attendance %</h4>
+                <p>{{ summary.percentage }}%</p>
+            </div>
+        </div>
+
+        <div class="date-section">
+            <h3>Present Dates</h3>
+            <div class="date-list">
+                {% if summary.present_dates %}
+                    {% for date in summary.present_dates %}
+                        {{ date }}{% if not loop.last %}, {% endif %}
+                    {% endfor %}
+                {% else %}
+                    No present dates found.
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="date-section">
+            <h3>Absent Dates</h3>
+            <div class="date-list">
+                {% if summary.absent_dates %}
+                    {% for date in summary.absent_dates %}
+                        {{ date }}{% if not loop.last %}, {% endif %}
+                    {% endfor %}
+                {% else %}
+                    No absent dates found.
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="buttons">
+            <a href="/student_login">
+                <button class="btn btn-secondary">Logout</button>
+            </a>
+        </div>
+    </div>
+
+</body>
+</html>

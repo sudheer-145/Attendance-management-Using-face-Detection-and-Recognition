@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Login</title>
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial, sans-serif;
+        }
+
+        body{
+            min-height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            background:linear-gradient(135deg, #5f2c82, #49a09d);
+        }
+
+        .box{
+            width:380px;
+            padding:35px 30px;
+            background:rgba(255,255,255,0.12);
+            border-radius:18px;
+            backdrop-filter:blur(12px);
+            box-shadow:0 10px 30px rgba(0,0,0,0.25);
+            text-align:center;
+            color:white;
+        }
+
+        .box h2{
+            margin-bottom:10px;
+            font-size:28px;
+        }
+
+        .box p{
+            margin-bottom:22px;
+            font-size:14px;
+            color:#f1f1f1;
+        }
+
+        input{
+            width:100%;
+            padding:12px;
+            margin:10px 0;
+            border:none;
+            border-radius:10px;
+            outline:none;
+            font-size:15px;
+        }
+
+        button{
+            width:100%;
+            padding:12px;
+            margin-top:12px;
+            background:#ff4b2b;
+            color:white;
+            border:none;
+            border-radius:10px;
+            font-size:16px;
+            font-weight:bold;
+            cursor:pointer;
+            transition:0.3s;
+        }
+
+        button:hover{
+            background:#e63e21;
+        }
+
+        .back-link{
+            margin-top:15px;
+        }
+
+        .back-link a{
+            color:white;
+            text-decoration:none;
+            font-size:14px;
+        }
+
+        .back-link a:hover{
+            text-decoration:underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="box">
+        <h2>Student Login</h2>
+        <p>Enter your student ID and password</p>
+
+        <form method="POST">
+            <input type="text" name="student_id" placeholder="Student ID" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <button type="submit">Login</button>
+        </form>
+
+        <div class="back-link">
+            <a href="/">Back to Admin Login</a>
+        </div>
+    </div>
+
+</body>
+</html>

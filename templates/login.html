@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance Login</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial, sans-serif;
+        }
+
+        body{
+            min-height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            background:linear-gradient(135deg, #5f2c82, #49a09d);
+        }
+
+        .login-box{
+            width:380px;
+            padding:40px 30px;
+            background:rgba(255,255,255,0.12);
+            border-radius:18px;
+            backdrop-filter:blur(12px);
+            box-shadow:0 10px 30px rgba(0,0,0,0.25);
+            text-align:center;
+            color:white;
+        }
+
+        .login-box h2{
+            margin-bottom:10px;
+            font-size:30px;
+        }
+
+        .login-box p{
+            margin-bottom:25px;
+            font-size:14px;
+            color:#f1f1f1;
+        }
+
+        .login-box input{
+            width:100%;
+            padding:13px;
+            margin:10px 0;
+            border:none;
+            border-radius:10px;
+            outline:none;
+            font-size:15px;
+        }
+
+        .login-box button{
+            width:100%;
+            padding:13px;
+            margin-top:15px;
+            border:none;
+            border-radius:10px;
+            background:#ff4b2b;
+            color:white;
+            font-size:16px;
+            font-weight:bold;
+            cursor:pointer;
+            transition:0.3s;
+        }
+
+        .login-box button:hover{
+            background:#e63e21;
+        }
+
+        .extra-link{
+            margin-top:18px;
+        }
+
+        .extra-link a{
+            color:white;
+            text-decoration:none;
+            font-size:14px;
+        }
+
+        .extra-link a:hover{
+            text-decoration:underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-box">
+        <h2>VisionDB Attendance System</h2>
+        <p>Admin Login</p>
+
+        <form method="POST">
+            <input type="text" name="username" placeholder="Enter Username" required>
+            <input type="password" name="password" placeholder="Enter Password" required>
+            <button type="submit">Login</button>
+        </form>
+
+        <div class="extra-link">
+            <a href="/student_login">Student Login</a>
+        </div>
+    </div>
+
+</body>
+</html>

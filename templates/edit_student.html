@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Student</title>
+    <style>
+        body{
+            font-family:Arial, sans-serif;
+            background:#f4f6f9;
+            margin:0;
+            padding:0;
+        }
+
+        .box{
+            width:420px;
+            margin:40px auto;
+            background:white;
+            padding:30px;
+            border-radius:15px;
+            box-shadow:0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        h2{
+            text-align:center;
+            color:#5f2c82;
+            margin-bottom:20px;
+        }
+
+        input{
+            width:100%;
+            padding:12px;
+            margin:10px 0;
+            border:1px solid #ccc;
+            border-radius:8px;
+        }
+
+        button{
+            width:100%;
+            padding:12px;
+            background:#5f2c82;
+            color:white;
+            border:none;
+            border-radius:8px;
+            cursor:pointer;
+            font-size:15px;
+            font-weight:bold;
+        }
+
+        button:hover{
+            background:#47206a;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="box">
+        <h2>Edit Student</h2>
+
+        <form method="POST">
+            <input type="text" name="name" value="{{ student[1] }}" placeholder="Student Name" required>
+            <input type="text" name="department" value="{{ student[2] }}" placeholder="Department" required>
+            <input type="text" name="password" value="{{ student[3] }}" placeholder="Password" required>
+            <input type="text" name="parent_name" value="{{ student[4] }}" placeholder="Parent Name" required>
+            <input type="text" name="parent_phone" value="{{ student[5] }}" placeholder="Parent Phone" required>
+            <input type="email" name="parent_email" value="{{ student[6] }}" placeholder="Parent Email" required>
+
+            <button type="submit">Update Student</button>
+        </form>
+    </div>
+
+</body>
+</html>

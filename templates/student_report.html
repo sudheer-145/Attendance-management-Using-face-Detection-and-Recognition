@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Report</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial, sans-serif;
+        }
+
+        body{
+            background:#f4f6f9;
+            padding:30px 15px;
+        }
+
+        .container{
+            max-width:900px;
+            margin:auto;
+            background:white;
+            padding:30px;
+            border-radius:18px;
+            box-shadow:0 10px 30px rgba(0,0,0,0.12);
+        }
+
+        h2, h3{
+            color:#5f2c82;
+            margin-bottom:15px;
+        }
+
+        p{
+            margin-bottom:10px;
+            color:#333;
+            font-size:16px;
+        }
+
+        .photo-box{
+            text-align:center;
+            margin:20px 0;
+        }
+
+        .photo-box img{
+            width:160px;
+            height:160px;
+            object-fit:cover;
+            border-radius:12px;
+            border:3px solid #5f2c82;
+        }
+
+        table{
+            width:100%;
+            border-collapse:collapse;
+            margin-top:15px;
+            background:white;
+        }
+
+        th, td{
+            padding:12px;
+            border-bottom:1px solid #ddd;
+            text-align:center;
+        }
+
+        th{
+            background:#5f2c82;
+            color:white;
+        }
+
+        tr:hover{
+            background:#f8f8f8;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Student Report</h2>
+
+        <p><b>Student ID:</b> {{ student[0] }}</p>
+        <p><b>Name:</b> {{ student[1] }}</p>
+        <p><b>Department:</b> {{ student[2] }}</p>
+
+        <div class="photo-box">
+            {% if student[6] %}
+                <img src="{{ url_for('static', filename='faces/' + student[6]) }}" alt="Student Photo">
+            {% else %}
+                <p>No photo available</p>
+            {% endif %}
+        </div>
+
+        <h3>Parent Details</h3>
+        <p><b>Parent Name:</b> {{ parent[2] if parent else '' }}</p>
+        <p><b>Parent Phone:</b> {{ parent[3] if parent else '' }}</p>
+        <p><b>Parent Email:</b> {{ parent[4] if parent else '' }}</p>
+
+        <h3>Attendance Summary</h3>
+        <p><b>Total Present:</b> {{ present }}</p>
+        <p><b>Total Absent:</b> {{ absent }}</p>
+        <p><b>Attendance Percentage:</b> {{ "%.2f"|format(percentage) }}%</p>
+
+        <h3>Attendance Dates</h3>
+        <table>
+            <tr>
+                <th>Date</th>
+                <th>Status</th>
+            </tr>
+            {% for r in records %}
+            <tr>
+                <td>{{ r[0] }}</td>
+                <td>{{ r[1] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+</body>
+</html>

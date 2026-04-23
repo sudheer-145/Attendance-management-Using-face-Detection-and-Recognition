@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance Percentage</title>
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial, sans-serif;
+        }
+
+        body{
+            background:#f4f6f9;
+        }
+
+        .header{
+            background:linear-gradient(135deg, #5f2c82, #49a09d);
+            color:white;
+            padding:25px;
+            text-align:center;
+            box-shadow:0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        table{
+            margin:35px auto;
+            border-collapse:collapse;
+            width:85%;
+            background:white;
+            box-shadow:0 4px 12px rgba(0,0,0,0.15);
+            border-radius:12px;
+            overflow:hidden;
+        }
+
+        th, td{
+            padding:14px;
+            border-bottom:1px solid #ddd;
+            text-align:center;
+        }
+
+        th{
+            background:#5f2c82;
+            color:white;
+        }
+
+        tr:hover{
+            background:#f1f1f1;
+        }
+
+        .center{
+            text-align:center;
+            margin:25px 0 40px;
+        }
+
+        button{
+            padding:10px 20px;
+            background:#5f2c82;
+            color:white;
+            border:none;
+            border-radius:8px;
+            cursor:pointer;
+            transition:0.3s;
+        }
+
+        button:hover{
+            background:#47206a;
+        }
+
+        .no-data{
+            text-align:center;
+            margin-top:30px;
+            color:#666;
+            font-size:18px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h2>Student Attendance Percentage</h2>
+    </div>
+
+    {% if records %}
+    <table>
+        <tr>
+            <th>Student ID</th>
+            <th>Name</th>
+            <th>Present Days</th>
+            <th>Total Days</th>
+            <th>Attendance %</th>
+        </tr>
+
+        {% for r in records %}
+        <tr>
+            <td>{{ r.id }}</td>
+            <td>{{ r.name }}</td>
+            <td>{{ r.present_days }}</td>
+            <td>{{ r.total_days }}</td>
+            <td>{{ r.percentage }}%</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+    <div class="no-data">No student data found.</div>
+    {% endif %}
+
+    <div class="center">
+        <a href="/dashboard">
+            <button>Back to Dashboard</button>
+        </a>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance Dashboard</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial, sans-serif;
+        }
+
+        body{
+            background:#f4f6f9;
+        }
+
+        .header{
+            background:linear-gradient(135deg, #5f2c82, #49a09d);
+            color:white;
+            padding:25px;
+            text-align:center;
+            box-shadow:0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .header h2{
+            font-size:30px;
+        }
+
+        .stats{
+            display:flex;
+            justify-content:center;
+            flex-wrap:wrap;
+            gap:25px;
+            margin:35px 20px;
+        }
+
+        .stat-box{
+            background:white;
+            padding:25px;
+            width:220px;
+            border-radius:15px;
+            text-align:center;
+            box-shadow:0 6px 15px rgba(0,0,0,0.12);
+            transition:0.3s;
+        }
+
+        .stat-box:hover{
+            transform:translateY(-5px);
+        }
+
+        .stat-box h3{
+            color:#666;
+            margin-bottom:12px;
+            font-size:18px;
+        }
+
+        .stat-box h2{
+            color:#5f2c82;
+            font-size:30px;
+        }
+
+        .container{
+            display:flex;
+            justify-content:center;
+            flex-wrap:wrap;
+            gap:30px;
+            margin:40px 20px 60px;
+        }
+
+        .card{
+            width:260px;
+            padding:25px;
+            background:white;
+            border-radius:15px;
+            text-align:center;
+            box-shadow:0 6px 15px rgba(0,0,0,0.12);
+            transition:0.3s;
+        }
+
+        .card:hover{
+            transform:translateY(-5px);
+        }
+
+        .card h3{
+            margin-bottom:12px;
+            color:#333;
+        }
+
+        .card p{
+            color:#666;
+            margin-bottom:18px;
+            font-size:14px;
+        }
+
+        .card button{
+            padding:10px 22px;
+            border:none;
+            border-radius:8px;
+            background:#5f2c82;
+            color:white;
+            cursor:pointer;
+            font-size:15px;
+            font-weight:bold;
+            transition:0.3s;
+        }
+
+        .card button:hover{
+            background:#47206a;
+        }
+
+        .chart-box{
+            width:500px;
+            max-width:90%;
+            margin:20px auto 40px;
+            background:white;
+            padding:25px;
+            border-radius:15px;
+            box-shadow:0 6px 15px rgba(0,0,0,0.12);
+        }
+
+        .logout{
+            text-align:center;
+            margin-bottom:40px;
+        }
+
+        .logout button{
+            padding:10px 20px;
+            border:none;
+            border-radius:8px;
+            background:#dc3545;
+            color:white;
+            cursor:pointer;
+            font-weight:bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h2>VisionDB Attendance Management Dashboard</h2>
+    </div>
+
+    <div class="stats">
+        <div class="stat-box">
+            <h3>Total Students</h3>
+            <h2>{{ students }}</h2>
+        </div>
+
+        <div class="stat-box">
+            <h3>Present Today</h3>
+            <h2>{{ present }}</h2>
+        </div>
+
+        <div class="stat-box">
+            <h3>Absent Today</h3>
+            <h2>{{ absent }}</h2>
+        </div>
+    </div>
+
+    <div class="chart-box">
+        <canvas id="attendanceChart"></canvas>
+    </div>
+
+    <div class="container">
+        <div class="card">
+            <h3>Register Student</h3>
+            <p>Add new student face to the system</p>
+            <a href="/register">
+                <button type="button">Open</button>
+            </a>
+        </div>
+
+        <div class="card">
+            <h3>Take Attendance</h3>
+            <p>Start face recognition attendance</p>
+            <a href="/attendance">
+                <button type="button">Open</button>
+            </a>
+        </div>
+
+        <div class="card">
+            <h3>Attendance Report</h3>
+            <p>View attendance records and student summary</p>
+            <a href="/report">
+                <button type="button">Open</button>
+            </a>
+        </div>
+
+        <div class="card">
+            <h3>Attendance Percentage</h3>
+            <p>View student attendance percentage</p>
+            <a href="/percentage">
+                <button type="button">Open</button>
+            </a>
+        </div>
+
+        <div class="card">
+            <h3>Change Admin Password</h3>
+            <p>Update admin login password</p>
+            <a href="/change_admin_password">
+                <button type="button">Open</button>
+            </a>
+        </div>
+
+        <div class="card">
+            <h3>All Students</h3>
+            <p>View all registered students</p>
+            <a href="/students">
+                <button type="button">Open</button>
+            </a>
+        </div>
+
+        <div class="card">
+            <h3>Attendance Records</h3>
+            <p>View all attendance records</p>
+            <a href="/attendance_records">
+                <button type="button">Open</button>
+            </a>
+        </div>
+
+        <div class="card">
+            <h3>Change Student Password</h3>
+            <p>Update any student's login password</p>
+            <a href="/change_student_password">
+                <button type="button">Open</button>
+            </a>
+        </div>
+
+        <div class="card">
+            <h3>Logout</h3>
+            <p>Exit admin session safely</p>
+            <a href="/logout">
+                <button type="button">Logout</button>
+            </a>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        const presentCount = Number("{{ present }}");
+        const absentCount = Number("{{ absent }}");
+
+        const ctx = document.getElementById("attendanceChart").getContext("2d");
+
+        new Chart(ctx, {
+            type: "pie",
+            data: {
+                labels: ["Present", "Absent"],
+                datasets: [{
+                    data: [presentCount, absentCount],
+                    backgroundColor: ["#36A2EB", "#FF6384"],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true
+            }
+        });
+    </script>
+
+</body>
+</html>

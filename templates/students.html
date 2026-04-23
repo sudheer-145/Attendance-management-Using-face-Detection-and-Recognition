@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Students</title>
+    <style>
+        body{
+            font-family:Arial, sans-serif;
+            background:#f4f6f9;
+            margin:0;
+            padding:0;
+        }
+
+        .header{
+            background:linear-gradient(135deg, #5f2c82, #49a09d);
+            color:white;
+            text-align:center;
+            padding:20px;
+        }
+
+        table{
+            width:95%;
+            margin:30px auto;
+            border-collapse:collapse;
+            background:white;
+            box-shadow:0 4px 12px rgba(0,0,0,0.12);
+        }
+
+        th, td{
+            padding:12px;
+            border:1px solid #ddd;
+            text-align:center;
+        }
+
+        th{
+            background:#5f2c82;
+            color:white;
+        }
+
+        img{
+            border-radius:8px;
+            object-fit:cover;
+        }
+
+        .action-btn{
+            padding:8px 14px;
+            border:none;
+            border-radius:6px;
+            color:white;
+            cursor:pointer;
+            margin:2px;
+        }
+
+        .edit-btn{
+            background:#28a745;
+        }
+
+        .delete-btn{
+            background:#dc3545;
+        }
+
+        .center{
+            text-align:center;
+            margin-bottom:30px;
+        }
+
+        .back-btn{
+            padding:10px 20px;
+            border:none;
+            border-radius:8px;
+            background:#5f2c82;
+            color:white;
+            cursor:pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h2>All Students</h2>
+    </div>
+
+    <table>
+        <tr>
+            <th>Student ID</th>
+            <th>Name</th>
+            <th>Department</th>
+            <th>Password</th>
+            <th>Parent Name</th>
+            <th>Parent Phone</th>
+            <th>Parent Email</th>
+            <th>Photo</th>
+            <th>Actions</th>
+        </tr>
+
+        {% for s in students %}
+        <tr>
+            <td>{{ s[0] }}</td>
+            <td>{{ s[1] }}</td>
+            <td>{{ s[2] }}</td>
+            <td>{{ s[3] }}</td>
+            <td>{{ s[4] }}</td>
+            <td>{{ s[5] }}</td>
+            <td>{{ s[6] }}</td>
+            <td>
+                <img src="{{ url_for('static', filename='faces/' + s[0] + '.jpg') }}"
+                     width="80" height="80" alt="Student Photo">
+            </td>
+            <td>
+                <a href="/edit_student/{{ s[0] }}">
+                    <button class="action-btn edit-btn">Edit</button>
+                </a>
+                <a href="/delete_student/{{ s[0] }}" onclick="return confirm('Are you sure you want to delete this student?');">
+                    <button class="action-btn delete-btn">Delete</button>
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <div class="center">
+        <a href="/dashboard">
+            <button class="back-btn">Back to Dashboard</button>
+        </a>
+    </div>
+
+</body>
+</html>
