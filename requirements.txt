@@ -1,0 +1,7 @@
+flask
+opencv-python
+face-recognition
+mediapipe
+numpy
+psycopg2-binary
+gunicorn
